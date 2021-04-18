@@ -1,0 +1,22 @@
+.h-side {
+  height: 475px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.active {
+  border-left: solid #6379f4;
+  color: #6379f4 !important;
+}
+div.card {
+  border-radius: 15px;
+}
+/* pointer boleh dihapus ram ini kugunain biar kelihatan mana yang ku klik */
+.font-title {
+  font-size: 24px;
+}
+.bt-blue {
+  background: #6379f4;
+}

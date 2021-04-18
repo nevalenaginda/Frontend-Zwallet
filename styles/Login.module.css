@@ -1,0 +1,20 @@
+@media screen and (max-width: 992px) {
+  .phone-brand {
+    background-color: ghostwhite;
+  }
+  .h-content {
+    height: calc(100vh - 75px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+}
+.round {
+  border-radius: 25px 25px 0px 0px;
+}
+.h-brand {
+  height: 100px;
+}
+.set input:focus {
+  border-color: blue !important;
+  box-shadow: none !important;
+  outline: 0 none !important;
+}
