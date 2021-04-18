@@ -1,0 +1,22 @@
+{
+  "/_app": "pages/_app.js",
+  "/activate/[token]/[email]": "pages/activate/[token]/[email].html",
+  "/api/hello": "pages/api/hello.js",
+  "/dashboard": "pages/dashboard.html",
+  "/history": "pages/history.html",
+  "/": "pages/index.html",
+  "/login": "pages/login.html",
+  "/pin": "pages/pin.html",
+  "/profile/change-password": "pages/profile/change-password.html",
+  "/profile/change-pin": "pages/profile/change-pin.html",
+  "/profile": "pages/profile.html",
+  "/profile/manage-phone-number": "pages/profile/manage-phone-number.html",
+  "/profile/personal-information": "pages/profile/personal-information.html",
+  "/reset-password": "pages/reset-password.html",
+  "/sign-up": "pages/sign-up.html",
+  "/topup": "pages/topup.html",
+  "/transfer": "pages/transfer.html",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}
