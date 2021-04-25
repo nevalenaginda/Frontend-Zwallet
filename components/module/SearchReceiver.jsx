@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,12 +15,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchReceiver() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const router = useRouter();
+
+  const { transfer } = useSelector((state) => state.transfer);
+  const { user } = useSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("Data unavailable");
   const [dataAllUser, setAllDataUser] = useState({});
   const [searchName, setSearchName] = useState("");
+
   let [queryLimit, setQueryLimit] = useState("1");
   let [queryPage, setQueryPage] = useState("1");
   let [totalPage, setTotalPage] = useState("1");
@@ -28,6 +34,11 @@ function SearchReceiver() {
 
   const urlImg = process.env.NEXT_PUBLIC_URL_IMAGE_NO_SLASH;
   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
+
+  let idUser;
+  if (process.browser) {
+    idUser = localStorage.getItem("id");
+  }
 
   const param = [
     {
@@ -74,11 +85,16 @@ function SearchReceiver() {
     },
   ];
 
-  let idUser, token;
-  if (process.browser) {
-    idUser = localStorage.getItem("id");
-    token = localStorage.getItem("token");
-  }
+  const handleClickCard = (id) => {
+    router.push({
+      pathname: "/transfer/amount-and-note",
+      scroll: false,
+    });
+    dispatch({
+      type: "INSERT_DATA_TRANSEFR",
+      action: (transfer.to_id = id),
+    });
+  };
 
   const handleChangePage = (item, i) => {
     setQueryPage(i);
@@ -88,35 +104,42 @@ function SearchReceiver() {
     setIsLoading(true);
     setTimeout(() => {
       if (searchName !== "") {
-        router.push({
-          pathname: "/transfer",
-          query: {
-            search: searchName,
-            param: queryParam,
-            sort: queryOrder,
-            page: queryPage,
-            limit: queryLimit,
+        router.push(
+          {
+            pathname: "/transfer",
+            query: {
+              search: searchName,
+              param: queryParam,
+              sort: queryOrder,
+              page: queryPage,
+              limit: queryLimit,
+            },
           },
-          scroll: false,
-        });
+          undefined,
+          { scroll: false }
+        );
       } else {
-        router.push({
-          pathname: "/transfer",
-          query: {
-            param: queryParam,
-            sort: queryOrder,
-            page: queryPage,
-            limit: queryLimit,
+        router.push(
+          {
+            pathname: "/transfer",
+            query: {
+              param: queryParam,
+              sort: queryOrder,
+              page: queryPage,
+              limit: queryLimit,
+            },
+            scroll: false,
           },
-          scroll: false,
-        });
+          undefined,
+          { scroll: false }
+        );
       }
 
       axios
         .get(
           `${URLAPI}allUser/${idUser}?search=${searchName}&page=${queryPage}&limit=${queryLimit}&param=${queryParam}&sort=${queryOrder}`,
           {
-            headers: { token },
+            withCredentials: true,
           }
         )
         .then((res) => {
@@ -196,7 +219,11 @@ function SearchReceiver() {
                     <div className="text-decoration-none text-dark">
                       {dataAllUser.data.map((itm, idx) => {
                         return (
-                          <div className="container" key={idx}>
+                          <div
+                            className="container pointer"
+                            key={idx}
+                            onClick={(e) => handleClickCard(itm.id)}
+                          >
                             {/* Data Hasil Pencarian Dalam balon */}
                             {/* 1 */}
                             <div className="row item mb-3">

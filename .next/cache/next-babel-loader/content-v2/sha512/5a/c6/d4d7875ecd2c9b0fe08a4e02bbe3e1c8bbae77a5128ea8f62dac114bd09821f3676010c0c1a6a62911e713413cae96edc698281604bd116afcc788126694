@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default function toRupiah(data) {\n  return parseInt(data).toLocaleString(\"id-ID\");\n}","map":null,"metadata":{},"sourceType":"module"}

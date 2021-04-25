@@ -22,7 +22,7 @@ function home() {
 
             <div className="row pt-3 pt-lg-4">
               <div className="col-lg mb-md-0">
-                {/* <Menu /> */} <ProfileMenu />
+                <ProfileMenu />
               </div>
               <div className="col">
                 <ContactInfo />

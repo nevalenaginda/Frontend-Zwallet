@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../configs/redux/actions/user";
+import { getAllHistory } from "../../configs/redux/actions/history";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Swal from "sweetalert2";
@@ -34,36 +37,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Balance() {
+  const dispatch = useDispatch();
   const router = useRouter();
-  const [dataUser, setDataUser] = useState({});
+  const { user: dataUser } = useSelector((state) => state.user);
   const [dataBalance, setBalance] = useState(0);
   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
-  let idUser, token;
-
-  if (process.browser) {
-    idUser = localStorage.getItem("id");
-    token = localStorage.getItem("token");
-  }
-  const getDataUser = (idUser, token) => {
-    axios
-      .get(`${URLAPI}user/${idUser}`, { headers: { token } })
-      .then((res) => {
-        console.log(res.data.data);
-        setDataUser(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        setDataUser({});
-      });
-  };
-
-  useEffect(() => {
-    getDataUser(idUser, token);
-  }, []);
 
   const handleTopUp = (event) => {
     event.preventDefault();
-    console.log(dataBalance);
+
     if (dataBalance < 5000) {
       setOpen(false);
       Swal.fire({
@@ -78,9 +60,12 @@ function Balance() {
         amount: dataBalance,
       };
       axios
-        .post(`${URLAPI}topUp/${idUser}`, data, { headers: { token } })
+        .post(`${URLAPI}topUp/${dataUser.id}`, data, {
+          withCredentials: true,
+        })
         .then((res) => {
-          getDataUser(idUser, token);
+          dispatch(getUser());
+          dispatch(getAllHistory(dataUser.id));
           setBalance(0);
           setOpen(false);
           Swal.fire({

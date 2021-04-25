@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import toRupiah from "../../helpers/curencyToIDR";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllHistory } from "../../configs/redux/actions/history";
 
 // modal
 import Moment from "moment";
 import Swal from "sweetalert2";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import Router from "next/router";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -37,8 +40,10 @@ const useStyles = makeStyles((theme) => ({
 // modal
 
 function HistoryAllTransaction() {
-  const [dataAllUser, setAllDataUser] = useState({});
-  const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
+  const { message, allHistory: dataAllUser } = useSelector(
+    (state) => state.history
+  );
   const urlImg = process.env.NEXT_PUBLIC_URL_IMAGE_NO_SLASH;
   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
 
@@ -47,128 +52,123 @@ function HistoryAllTransaction() {
     idUser = localStorage.getItem("id");
     token = localStorage.getItem("token");
   }
-  const getData = () => {
-    axios
-      .get(`${URLAPI}history/${idUser}?limit=1000&sort=asc`, {
-        headers: { token },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setAllDataUser(res.data);
-        setMessage(res.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-        setMessage(err.response.data.message);
-        setAllDataUser({});
-      });
-  };
+
   useEffect(() => {
-    getData();
-  }, []);
+    dispatch(getAllHistory(idUser, 100));
+  }, [dispatch]);
 
   // modal
-  const [detailHistory, setDetailHistory] = useState({});
-  const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  // const [detailHistory, setDetailHistory] = useState({});
+  // const classes = useStyles();
+  // const [modalStyle] = React.useState(getModalStyle);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleOpen = (data) => {
-    setDetailHistory(data);
-    console.log("ini", data);
-    setOpen(true);
+  const handleDetail = (id) => {
+    Router.push(`/history/${id}`);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleOpen = (data) => {
+  //   setDetailHistory(data);
+  //   console.log("ini", data);
+  //   setOpen(true);
+  // };
 
-  const btaccept = (id) => {
-    const data = {
-      id,
-      token,
-    };
-    setOpen(false);
-    axios
-      .post(`${URLAPI}transferSuccess/${id}`, data, { headers: { token } })
-      .then((response) => {
-        setOpen(false);
-        getData();
-        Swal.fire({
-          icon: "success",
-          title: response.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Failed",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      });
-  };
-  const btcancelUser = (id) => {
-    const data = {
-      id,
-      token,
-    };
-    setOpen(false);
-    axios
-      .post(`${URLAPI}transferCancel/${id}`, data, { headers: { token } })
-      .then((response) => {
-        getData();
-        Swal.fire({
-          icon: "success",
-          title: response.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        Swal.fire({
-          icon: "error",
-          title: "Failed",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      });
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
-  const btcancelTarget = (id) => {
-    const data = {
-      id,
-      token,
-    };
-    setOpen(false);
-    axios
-      .post(`${URLAPI}transferCancel/${id}`, data, { headers: { token } })
-      .then((response) => {
-        getData();
-        Swal.fire({
-          icon: "success",
-          title: response.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        Swal.fire({
-          icon: "error",
-          title: "Failed",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      });
-  };
+  // const btaccept = (id) => {
+  //   const data = {
+  //     id,
+  //     token,
+  //   };
+  //   setOpen(false);
+  //   axios
+  //     .post(`${URLAPI}transferSuccess/${id}`, data, {
+  //       withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       setOpen(false);
+  //       getData();
+  //       Swal.fire({
+  //         icon: "success",
+  //         title: response.data.message,
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: "Failed",
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     });
+  // };
+  // const btcancelUser = (id) => {
+  //   const data = {
+  //     id,
+  //     token,
+  //   };
+  //   setOpen(false);
+  //   axios
+  //     .post(`${URLAPI}transferCancel/${id}`, data, {
+  //       withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       getData();
+  //       Swal.fire({
+  //         icon: "success",
+  //         title: response.data.message,
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: "Failed",
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     });
+  // };
 
-  const changeTime = (time) => {
-    return Moment(time).format("MMMM DD, YYYY - HH.mm");
-  };
+  // const btcancelTarget = (id) => {
+  //   const data = {
+  //     id,
+  //     token,
+  //   };
+  //   setOpen(false);
+  //   axios
+  //     .post(`${URLAPI}transferCancel/${id}`, data, {
+  //       withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       getData();
+  //       Swal.fire({
+  //         icon: "success",
+  //         title: response.data.message,
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: "Failed",
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     });
+  // };
+
+  // const changeTime = (time) => {
+  //   return Moment(time).format("MMMM DD, YYYY - HH.mm");
+  // };
 
   // end modal
 
@@ -193,7 +193,7 @@ function HistoryAllTransaction() {
                       return (
                         <div
                           className="card shadow border-0 mb-3 pointer"
-                          onClick={(event) => handleOpen(itm)}
+                          onClick={(event) => handleDetail(itm.id)}
                           key={idx}
                         >
                           <div className="card-body h-100">
@@ -297,11 +297,9 @@ function HistoryAllTransaction() {
               </div>
             </div>
           )}
-
-          {/* {a=='a'?('m'):('b')} */}
         </div>
       </div>
-      <Modal
+      {/* <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
@@ -417,7 +415,7 @@ function HistoryAllTransaction() {
             </div>
           </div>
         </div>
-      </Modal>
+      </Modal> */}
 
       <style jsx>{`
         @media screen and (max-width: 992px) {

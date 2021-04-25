@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import toRupiah from "../../helpers/curencyToIDR";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllHistory,
+  getDetailHistory,
+} from "../../configs/redux/actions/history";
 
 // modal
 import Moment from "moment";
@@ -38,9 +43,10 @@ const useStyles = makeStyles((theme) => ({
 // modal
 
 function TransactionHistory() {
-  const [dataAllUser, setAllDataUser] = useState({});
-  const [message, setMessage] = useState("Data unavailable");
+  const dispatch = useDispatch();
+  const { message, allHistory } = useSelector((state) => state.history);
   const [detailHistory, setDetailHistory] = useState({});
+  const [isLoading, setLoading] = useState(false);
   const urlImg = process.env.NEXT_PUBLIC_URL_IMAGE_NO_SLASH;
   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
 
@@ -50,35 +56,27 @@ function TransactionHistory() {
     token = localStorage.getItem("token");
   }
 
-  const getData = () => {
-    axios
-      .get(`${URLAPI}history/${idUser}?limit=3&sort=desc`, {
-        headers: { token },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setAllDataUser(res.data);
-        setMessage(res.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-        setMessage(err.response.data.message);
-        setAllDataUser({});
-      });
-  };
-
   useEffect(() => {
-    getData();
-  }, []);
-
+    dispatch(getAllHistory(idUser, 10));
+  }, [dispatch]);
+  // console.log(allHistory);
   // modal
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
-  const handleOpen = (data) => {
-    setDetailHistory(data);
-    console.log("ini", data);
+  const handleOpen = (idx) => {
+    setLoading(true);
+    dispatch(getDetailHistory(idx))
+      .then((res) => {
+        setLoading(false);
+        setDetailHistory(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+    // console.log("ini", data);
     setOpen(true);
   };
 
@@ -93,10 +91,11 @@ function TransactionHistory() {
     };
     setOpen(false);
     axios
-      .post(`${URLAPI}transferSuccess/${id}`, data, { headers: { token } })
+      .post(`${URLAPI}transferSuccess/${id}`, data, {
+        withCredentials: true,
+      })
       .then((response) => {
         setOpen(false);
-        getData();
         Swal.fire({
           icon: "success",
           title: response.data.message,
@@ -120,9 +119,10 @@ function TransactionHistory() {
     };
     setOpen(false);
     axios
-      .post(`${URLAPI}transferCancel/${id}`, data, { headers: { token } })
+      .post(`${URLAPI}transferCancel/${id}`, data, {
+        withCredentials: true,
+      })
       .then((response) => {
-        getData();
         Swal.fire({
           icon: "success",
           title: response.data.message,
@@ -147,9 +147,10 @@ function TransactionHistory() {
     };
     setOpen(false);
     axios
-      .post(`${URLAPI}transferCancel/${id}`, data, { headers: { token } })
+      .post(`${URLAPI}transferCancel/${id}`, data, {
+        withCredentials: true,
+      })
       .then((response) => {
-        getData();
         Swal.fire({
           icon: "success",
           title: response.data.message,
@@ -186,17 +187,17 @@ function TransactionHistory() {
           {/* <!-- Item --> */}
           {message !== "Data unavailable" ||
           message === "Get all history success" ? (
-            <div className="container py-2">
+            <div className="container py-2 h-trans overflow-auto">
               {/* Looping disini */}
-              <div className="text-dark text-decoration-none">
+              <div className="text-dark text-decoration-none ">
                 {/* <!-- for desktop --> */}
-                {dataAllUser.data
-                  ? dataAllUser.data.map((itm, idx) => {
+                {allHistory.data
+                  ? allHistory.data.map((itm, idx) => {
                       return (
                         <div
                           className="d-none d-lg-flex row no-gutters min-item mb-2 py-auto pointer"
                           key={idx}
-                          onClick={(event) => handleOpen(itm)}
+                          onClick={(event) => handleOpen(itm.id)}
                         >
                           <div className="col-4 col-sm-3 col-md-2 imgCenter d-flex justify-content-center">
                             <div className="align-self-center">
@@ -276,12 +277,13 @@ function TransactionHistory() {
 
                 {/* <!-- End of for desktop --> */}
                 {/* <!-- For mobile! --> */}
-                {dataAllUser.data
-                  ? dataAllUser.data.map((itm, idx) => {
+                {allHistory.data
+                  ? allHistory.data.map((itm, idx) => {
                       return (
                         <div
                           className="d-flex d-lg-none row pointer"
-                          onClick={(event) => handleOpen(itm)}
+                          onClick={(event) => handleOpen(itm.id)}
+                          key={idx}
                         >
                           <div className="card w-100 mb-2 shadow border-0 h-content">
                             <div className="card-body">
@@ -369,7 +371,10 @@ function TransactionHistory() {
             <div className="text-center py-2 d-flex h-100">
               <div className="align-self-center w-100">
                 <div className="">
-                  <img src="/assets/notransaction.png" alt="" />
+                  <img
+                    src={require("../../assets/images/notransaction.png")}
+                    alt=""
+                  />
                   <h4 className="font-weight-bold my-3">It's Clear!</h4>
                   <p className="text-muted">
                     You've never done a transaction so far
@@ -388,118 +393,141 @@ function TransactionHistory() {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <div style={modalStyle} className={classes.paper}>
-          <div className="row">
-            <div className="col-4">
-              {detailHistory.to_id !== idUser ? (
-                <img
-                  className="imageHistory"
-                  src={`${urlImg}/images/${detailHistory.to_image}`}
-                />
-              ) : (
-                <img
-                  className="imageHistory"
-                  src={`${urlImg}/images/${detailHistory.from_image}`}
-                />
-              )}
-            </div>
-            <div className="col d-flex">
-              <div className="align-self-center">
+        {isLoading ? (
+          <div style={modalStyle} className={classes.paper}>
+            <div className="row  w-100">
+              <div className="col h-100">
+                <div className="py-auto text-center">
+                  {/* When loading*/}
+                  <div className="align-self-center ">
+                    <div className="spinner-grow text-blue">
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                    <h3 className="font-weight-bold">Wait a moment...</h3>
+                    <p className="text-muted m-0">Loading process</p>
+                  </div>
+                </div>
+              </div>
+            </div>{" "}
+          </div>
+        ) : (
+          <div style={modalStyle} className={classes.paper}>
+            <div className="row">
+              <div className="col-4">
                 {detailHistory.to_id !== idUser ? (
-                  <h5 className="font-weight-bold">{detailHistory.to_name}</h5>
+                  <img
+                    className="imageHistory"
+                    src={`${urlImg}/images/${detailHistory.to_image}`}
+                  />
                 ) : (
-                  <h5 className="font-weight-bold">
-                    {detailHistory.from_name}
-                  </h5>
+                  <img
+                    className="imageHistory"
+                    src={`${urlImg}/images/${detailHistory.from_image}`}
+                  />
+                )}
+              </div>
+              <div className="col d-flex">
+                <div className="align-self-center">
+                  {detailHistory.to_id !== idUser ? (
+                    <h5 className="font-weight-bold">
+                      {detailHistory.to_name}
+                    </h5>
+                  ) : (
+                    <h5 className="font-weight-bold">
+                      {detailHistory.from_name}
+                    </h5>
+                  )}
+
+                  {detailHistory.to_id !== idUser ? (
+                    <p className="text-muted m-0">{detailHistory.to_phone}</p>
+                  ) : (
+                    <p className="text-muted m-0">{detailHistory.from_phone}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div className="container">
+              <div className="d-flex justify-content-between mb-2">
+                <h6 className="m-0">Amount</h6>
+                {detailHistory.status === 1 ? (
+                  <h6 className="m-0 c-pending font-weight-bold">
+                    +Rp{toRupiah(detailHistory.amount)}
+                  </h6>
+                ) : detailHistory.status === 2 &&
+                  detailHistory.to_id !== idUser ? (
+                  <h6 className="m-0 c-transfer font-weight-bold">
+                    -Rp{toRupiah(detailHistory.amount)}
+                  </h6>
+                ) : detailHistory.status === 2 ? (
+                  <h6 className="m-0 text-success font-weight-bold">
+                    +Rp{toRupiah(detailHistory.amount)}
+                  </h6>
+                ) : detailHistory.status === 3 ? (
+                  <h6 className="m-0 c-cancel font-weight-bold">
+                    Rp{toRupiah(detailHistory.amount)}
+                  </h6>
+                ) : (
+                  <h6 className="m-0 c-topup font-weight-bold">
+                    +Rp{toRupiah(detailHistory.amount)}
+                  </h6>
+                )}
+              </div>
+              <hr />
+              <div className="d-flex justify-content-between mb-2">
+                <h6 className="m-0">Date & Time</h6>
+                <h6 className="m-0">{changeTime(detailHistory.created_at)}</h6>
+              </div>
+              <hr />
+              <div className="mb-4">
+                <h6 className="m font-weight-bold">Notes :</h6>
+                <h6 className="m-0">{detailHistory.notes}</h6>
+              </div>
+              <div className="mb-2">
+                {detailHistory.status === 1 ? (
+                  <h6 className="m font-weight-bold">Selection</h6>
+                ) : (
+                  ""
+                )}
+                {detailHistory.status === 1 &&
+                detailHistory.to_id === idUser ? (
+                  <button
+                    onClick={(e) => btcancelTarget(detailHistory.id)}
+                    className="btn btn-danger mr-2"
+                  >
+                    Reject
+                  </button>
+                ) : (
+                  ""
+                )}
+                {detailHistory.status === 1 &&
+                detailHistory.to_id === idUser ? (
+                  <button
+                    onClick={(e) => btaccept(detailHistory.id)}
+                    className="btn btn-success"
+                  >
+                    Accept
+                  </button>
+                ) : (
+                  ""
                 )}
 
-                {detailHistory.to_id !== idUser ? (
-                  <p className="text-muted m-0">{detailHistory.to_phone}</p>
+                {detailHistory.status === 1 &&
+                detailHistory.to_id !== idUser ? (
+                  <button
+                    onClick={(e) => btcancelUser(detailHistory.id)}
+                    className="btn btn-warning"
+                  >
+                    Cancel
+                  </button>
                 ) : (
-                  <p className="text-muted m-0">{detailHistory.from_phone}</p>
+                  ""
                 )}
               </div>
             </div>
           </div>
-          <hr />
-          <div className="container">
-            <div className="d-flex justify-content-between mb-2">
-              <h6 className="m-0">Amount</h6>
-              {detailHistory.status === 1 ? (
-                <h6 className="m-0 c-pending font-weight-bold">
-                  +Rp{toRupiah(detailHistory.amount)}
-                </h6>
-              ) : detailHistory.status === 2 &&
-                detailHistory.to_id !== idUser ? (
-                <h6 className="m-0 c-transfer font-weight-bold">
-                  -Rp{toRupiah(detailHistory.amount)}
-                </h6>
-              ) : detailHistory.status === 2 ? (
-                <h6 className="m-0 text-success font-weight-bold">
-                  +Rp{toRupiah(detailHistory.amount)}
-                </h6>
-              ) : detailHistory.status === 3 ? (
-                <h6 className="m-0 c-cancel font-weight-bold">
-                  Rp{toRupiah(detailHistory.amount)}
-                </h6>
-              ) : (
-                <h6 className="m-0 c-topup font-weight-bold">
-                  +Rp{toRupiah(detailHistory.amount)}
-                </h6>
-              )}
-            </div>
-            <hr />
-            <div className="d-flex justify-content-between mb-2">
-              <h6 className="m-0">Date & Time</h6>
-              <h6 className="m-0">{changeTime(detailHistory.created_at)}</h6>
-            </div>
-            <hr />
-            <div className="mb-4">
-              <h6 className="m font-weight-bold">Notes :</h6>
-              <h6 className="m-0">{detailHistory.notes}</h6>
-            </div>
-            <div className="mb-2">
-              {detailHistory.status === 1 ? (
-                <h6 className="m font-weight-bold">Selection</h6>
-              ) : (
-                ""
-              )}
-              {detailHistory.status === 1 && detailHistory.to_id === idUser ? (
-                <button
-                  onClick={(e) => btcancelTarget(detailHistory.id)}
-                  className="btn btn-danger mr-2"
-                >
-                  Reject
-                </button>
-              ) : (
-                ""
-              )}
-              {detailHistory.status === 1 && detailHistory.to_id === idUser ? (
-                <button
-                  onClick={(e) => btaccept(detailHistory.id)}
-                  className="btn btn-success"
-                >
-                  Accept
-                </button>
-              ) : (
-                ""
-              )}
-
-              {detailHistory.status === 1 && detailHistory.to_id !== idUser ? (
-                <button
-                  onClick={(e) => btcancelUser(detailHistory.id)}
-                  className="btn btn-warning"
-                >
-                  Cancel
-                </button>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-        </div>
+        )}
       </Modal>
-
       <style jsx>
         {`
           @media screen and (max-width: 992px) {
@@ -541,6 +569,9 @@ function TransactionHistory() {
             width: 100%;
             object-fit: cover;
             border-radius: 15px;
+          }
+          .h-trans {
+            height: 260px;
           }
         `}
       </style>

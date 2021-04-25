@@ -7,8 +7,7 @@ function ProfilMenu() {
     event.preventDefault();
     localStorage.removeItem("token");
     localStorage.removeItem("id");
-    localStorage.removeItem("name");
-    router.push("login");
+    router.push("/auth/login");
   };
 
   return (
