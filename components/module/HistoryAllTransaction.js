@@ -423,6 +423,9 @@ function HistoryAllTransaction() {
             background-color: transparent !important;
             box-shadow: none !important;
           }
+          .h-content {
+            height: calc(100vh - 12rem) !important;
+          }
         }
         .h-content {
           height: calc(90vh - 12rem);

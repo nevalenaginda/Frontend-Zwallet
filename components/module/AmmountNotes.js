@@ -151,6 +151,7 @@ function AmmountNotes() {
                     placeholder="Add some notes"
                     name="notes"
                     id="notes"
+                    required
                     onChange={handleChange}
                   />
                 </div>

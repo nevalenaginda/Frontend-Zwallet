@@ -15,7 +15,7 @@ function home() {
       </div>
       <div className="container">
         <div className="row h-row py-lg-5">
-          <div className="col-3 d-none d-md-block">
+          <div className="col-3 d-none d-lg-block">
             <SideBar></SideBar>
           </div>
           <div className="col">
@@ -23,7 +23,7 @@ function home() {
           </div>
         </div>
       </div>
-      <div className="d-none d-md-block">
+      <div className="d-none d-lg-block">
         <Footer />
       </div>
       <style jsx>{``}</style>

@@ -15,10 +15,10 @@ function home() {
       </div>
       <div className="container">
         <div className="row h-row py-lg-5">
-          <div className="col-3 d-none d-md-block">
+          <div className="col-3 d-none d-lg-block">
             <SideBar></SideBar>
           </div>
-          <div className="col">
+          <div className="col py-5">
             <AmmountNotes />
           </div>
         </div>
@@ -26,7 +26,16 @@ function home() {
       <div className="d-none d-md-block">
         <Footer />
       </div>
-      <style jsx>{``}</style>
+      <style jsx>{`
+        @media (max-width: 767.98px) {
+          .h-content {
+            height: 80vh;
+          }
+          .bg-light {
+            background: white !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

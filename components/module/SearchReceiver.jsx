@@ -300,7 +300,7 @@ function SearchReceiver() {
             </div>
           </div>
           <div className="row mt-2 mb-3 justify-content-center">
-            <div className="col-3">
+            <div className="col-sm-11 pt-3 pt-md-0 col-md-3">
               <select
                 onChange={(event) => setQueryParam(event.target.value)}
                 className="w-100 custom-select font-weight-normal"
@@ -314,7 +314,7 @@ function SearchReceiver() {
                 })}
               </select>
             </div>
-            <div className="col-3">
+            <div className="col-sm-11 pt-3 pt-md-0 col-md-3">
               <select
                 onChange={(event) => {
                   setQueryOrder(event.target.value);
@@ -330,7 +330,7 @@ function SearchReceiver() {
                 })}
               </select>
             </div>
-            <div className="col-3">
+            <div className="col-sm-11 pt-3 pt-md-0 col-md-3">
               <select
                 onChange={(event) => {
                   setQueryLimit(event.target.value);

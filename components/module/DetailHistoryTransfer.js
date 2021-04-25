@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import toRupiah from "../../helpers/curencyToIDR";
 import changeTime from "../../helpers/changeTime";
-import Moment from "moment";
 
 function DetailHistoryTransfer({ details }) {
   const router = useRouter();

@@ -6,12 +6,11 @@ import SideBar from "../../components/module/SideBar";
 function changePassword() {
   return (
     <div className="bg-light min-vh-100">
-      <div className="d-none d-md-block">
-        <NavBar></NavBar>
-      </div>
+      <NavBar></NavBar>
+
       <div className="container">
-        <div className="row py-lg-5">
-          <div className="col-3 d-none d-md-block">
+        <div className="row py-5 py-lg-5">
+          <div className="col-3 d-none d-lg-block">
             <SideBar></SideBar>
           </div>
           <div className="col">
@@ -19,9 +18,8 @@ function changePassword() {
           </div>
         </div>
       </div>
-      <div className="d-none d-md-block">
-        <Footer></Footer>
-      </div>
+
+      <Footer></Footer>
     </div>
   );
 }

@@ -15,10 +15,14 @@ function PersonalInfo({ name, email, phone }) {
       <div className="card border-0 shadow radius-12">
         <div className="card-body">
           <h5 className="font-weight-bold mb-4">Personal Information</h5>
-          <p className="text-muted">
+          <p className="text-muted d-none d-md-block">
             We got your personal information from the sign <br />
             up process. If you want to make changes on <br />
             your information, contact our support.
+          </p>
+          <p className="text-muted d-sm-block d-md-none">
+            We got your personal information from the sign up process. If you
+            want to make changes on your information, contact our support.
           </p>
           <div className="py-3">
             <div className="card border-0 shadow mb-3">

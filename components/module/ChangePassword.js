@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Router } from "next/router";
 
 function ChangePassword() {
   let [typeCurrentPw, setTypeCurrentPw] = useState(false);
@@ -17,7 +18,7 @@ function ChangePassword() {
 
   const handleTypeCurrentPw = (e) => {
     setTypeCurrentPw(!typeCurrentPw);
-    console.log(typeCurrentPw);
+    // console.log(typeCurrentPw);
   };
 
   const handleChangePw = (e) => {
@@ -44,6 +45,7 @@ function ChangePassword() {
             confirmButtonText: "Ok",
             confirmButtonColor: "#6379f4;",
           });
+          Router.push("/profile");
         })
         .catch((err) => {
           Swal.fire({

@@ -194,7 +194,9 @@ function Balance() {
             className=" radius-12 btn btn-gray btn-block "
             onClick={(e) => router.push("/transfer")}
           >
-            <div className="py-1 font-weight-bold">Transfer</div>
+            <div className="py-1 font-weight-bold">
+              <i className="fas fa-arrow-up  mr-2 text-blue"></i>Transfer
+            </div>
           </button>
         </div>
         <div className="col">
@@ -202,7 +204,9 @@ function Balance() {
             className=" radius-12 btn btn-gray btn-block "
             onClick={handleOpen}
           >
-            <div className="py-1 font-weight-bold">Top Up</div>
+            <div className="py-1 font-weight-bold">
+              <i className="fas fa-plus mr-2 text-blue"></i>Top Up
+            </div>
           </button>
         </div>
       </div>

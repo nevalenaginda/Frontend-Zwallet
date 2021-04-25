@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { updateUser } from "../../configs/redux/actions/user";
 
-function Profile() {
+function Profile({ className }) {
   const dispatch = useDispatch();
   const urlImg = process.env.NEXT_PUBLIC_URL_IMAGE_NO_SLASH;
   const { user } = useSelector((state) => state.user);
@@ -62,7 +62,7 @@ function Profile() {
   }, [user]);
 
   return (
-    <div>
+    <div className={className}>
       <div className="card border-0 shadow">
         <div className="card-body">
           <div className="py-3">
@@ -82,7 +82,7 @@ function Profile() {
               )}
             </div>
             <div
-              className="text-center"
+              className="text-center mb-2"
               data-toggle="modal"
               data-target="#exampleModal"
             >

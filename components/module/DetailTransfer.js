@@ -133,11 +133,11 @@ function DetailTransfer() {
   return (
     <div className="">
       <div className="container d-flex d-lg-none py-4">
-        <button className="text-dark mr-3">
+        <div className="text-dark mr-3" onClick={() => router.back()}>
           <h5 className="m-0 font-weight-bold align-self-center">
-            <i icon="arrow-left"></i>
+            <i className="bi bi-arrow-left"></i>
           </h5>
-        </button>
+        </div>
         <h5 className="m-0 align-self-center font-weight-bold">Confirmation</h5>
       </div>
       <div className="card border-0 card-lg shadow py-3">

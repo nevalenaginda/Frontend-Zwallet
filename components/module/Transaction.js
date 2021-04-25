@@ -411,8 +411,8 @@ function TransactionHistory() {
             </div>{" "}
           </div>
         ) : (
-          <div style={modalStyle} className={classes.paper}>
-            <div className="row">
+          <div style={modalStyle} className={`mx-auto ${classes.paper}`}>
+            <div className="row ``">
               <div className="col-4">
                 {detailHistory.to_id !== idUser ? (
                   <img
