@@ -48,41 +48,70 @@ export default function index({ details }) {
   );
 }
 
-export const getStaticProps = async (ctx) => {
-  const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
-  try {
-    const id = ctx.params.id;
-    const result = await axios.get(`${URLAPI}detailHistory/${id}`, {
-      withCredentials: true,
-    });
-    const data = result.data.data;
-    return {
-      props: {
-        details: data,
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        details: null,
-      },
-    };
-  }
-};
+// export const getStaticProps = async (ctx) => {
+//   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
+//   try {
+//     const id = ctx.params.id;
+//     const result = await axios.get(`${URLAPI}detailHistory/${id}`, {
+//       withCredentials: true,
+//     });
+//     const data = result.data.data;
+//     return {
+//       props: {
+//         details: data,
+//       },
+//     };
+//   } catch (err) {
+//     return {
+//       props: {
+//         details: null,
+//       },
+//     };
+//   }
+// };
 
-export const getStaticPaths = async () => {
+// export const getStaticPaths = async () => {
+//   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
+//   const result = await axios.get(`${URLAPI}historyAdmin?limit=100`, {
+//     withCredentials: true,
+//   });
+//   const data = result.data.data;
+//   const paths = data.map((item) => {
+//     return {
+//       params: { id: item.id.toString() },
+//     };
+//   });
+//   return {
+//     fallback: true,
+//     paths: paths,
+//   };
+// };
+export const getServerSideProps = async (ctx) => {
   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
-  const result = await axios.get(`${URLAPI}historyAdmin?limit=100`, {
-    withCredentials: true,
-  });
-  const data = result.data.data;
-  const paths = data.map((item) => {
-    return {
-      params: { id: item.id.toString() },
-    };
-  });
-  return {
-    fallback: true,
-    paths: paths,
-  };
+  const URLFE = process.env.NEXT_PUBLIC_URL_FRONT_END_NO_SLASH;
+  const id = ctx.params.id;
+  try {
+    let cookie = "";
+    if (ctx.req) {
+      cookie = ctx.req.headers.cookie;
+    }
+    const res = await axios.get(`${URLAPI}detailHistory/${id}`, {
+      withCredentials: true,
+      headers: {
+        cookie: cookie,
+      },
+    });
+    const data = res.data.data;
+    return { props: { details: data } };
+  } catch (error) {
+    console.log(error);
+    if (ctx.req) {
+      ctx.res.writeHead(301, { Location: `${URLFE}/auth/login` });
+      ctx.res.end();
+    }
+    if (!ctx.req) {
+      Router.push("/auth/login");
+    }
+    return { props: {  details: null,} };
+  }
 };
