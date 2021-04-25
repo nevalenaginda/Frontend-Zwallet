@@ -72,7 +72,7 @@ export const getStaticProps = async (ctx) => {
 
 export const getStaticPaths = async () => {
   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
-  const result = await axios.get(`${URLAPI}historyAdmin`, {
+  const result = await axios.get(`${URLAPI}historyAdmin?limit=100`, {
     withCredentials: true,
   });
   const data = result.data.data;
