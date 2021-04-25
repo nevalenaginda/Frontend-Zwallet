@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/module/NavBar";
 import Footer from "../../components/module/Footer";
 import SideBar from "../../components/module/SideBar";
-import DetailHistoryTransfer from "../../components/module/detailHistoryTransfer";
+import DetailHistoryTransfer from "../../components/module/DetailHistoryTransfer";
 
 export default function index({ details }) {
   const router = useRouter();
