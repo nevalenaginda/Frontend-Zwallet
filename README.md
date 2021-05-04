@@ -4,12 +4,9 @@ ZWallet adalah aplikasi website yang menyediakan fitur transfer antar pengguna. 
 
 
 ### Dependencies
-- [react](https://www.npmjs.com/package/react)
-- [socket.io-client](https://www.npmjs.com/package/socket.io-client)
+- [NextJS](https://nextjs.org/)
 - [Axios](https://www.npmjs.com/package/axios)
 - [bootstrap](https://www.npmjs.com/package/bootstrap)
-- [formik](https://www.npmjs.com/package/formik)
-- [yup](https://www.npmjs.com/package/yup)
 - [sweetalert2](https://www.npmjs.com/package/sweetalert2)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 - [redux](https://www.npmjs.com/package/redux)
