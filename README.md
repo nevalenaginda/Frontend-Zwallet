@@ -1,34 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Zwallet
 
-## Getting Started
+ZWallet adalah aplikasi website yang menyediakan fitur transfer antar pengguna. Ini adalah layanan frontend untuk aplikasi ini. Anda dapat melihat layanan backend [disini](https://github.com/nevalenaginda/Backend-Zwallet/tree/week2).
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
+### Dependencies
+- [react](https://www.npmjs.com/package/react)
+- [socket.io-client](https://www.npmjs.com/package/socket.io-client)
+- [Axios](https://www.npmjs.com/package/axios)
+- [bootstrap](https://www.npmjs.com/package/bootstrap)
+- [formik](https://www.npmjs.com/package/formik)
+- [yup](https://www.npmjs.com/package/yup)
+- [sweetalert2](https://www.npmjs.com/package/sweetalert2)
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+- [redux](https://www.npmjs.com/package/redux)
+- [react-redux](https://www.npmjs.com/package/react-redux)
+- [redux-logger](https://www.npmjs.com/package/redux-logger)
+- [redux-thunk](https://www.npmjs.com/search?q=redux-thunk)
+
+---
+
+## Project setup
+
+- Silahkan buka terminal pada VScode dengan cara tekan tombol
+```
+CTRL + ` 
+atau
+CTRL + SHIFT + C
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Kemudian lakukan install npm terlebih dahulu dengan membuat perintah seperti berikut
+```
+npm install atau npm i
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- Jika sudah, maka untuk menjalankan silahkan ketikan perintah berikut ini
+```
+npm run start
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Compiles and minifies for production
+```
+npm run build
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Lints and fixes files
+```
+npm run lint
+```
+---
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Hasil Web Chating
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Register
+![capture1](https://github.com/nevalenaginda/frontend-react-chat/blob/main/Screen%20Shots/screencapture-localhost-3000-register-2021-05-04-10_08_49.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Personal Chating
+![Capture3](https://github.com/nevalenaginda/frontend-react-chat/blob/main/Screen%20Shots/screencapture-localhost-3000-chat-2021-05-04-15_54_54.png)
 
-## Deploy on Vercel
+### Edit Profile
+![Capture5](https://github.com/nevalenaginda/frontend-react-chat/blob/main/Screen%20Shots/screencapture-localhost-3000-chat-2021-05-04-15_57_04.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Backend
+Silahkan klik link berikut [ini](https://github.com/nevalenaginda/Backend-Zwallet/tree/week2)
+
+## Deploy
+Hasil dari project ini dapat dilihat [disini](http://100.25.29.134:5010/)
