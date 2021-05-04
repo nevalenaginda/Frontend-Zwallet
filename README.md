@@ -64,4 +64,4 @@ npm run lint
 Silahkan klik link berikut [ini](https://github.com/nevalenaginda/Backend-Zwallet/tree/week2)
 
 ## Deploy
-Hasil dari project ini dapat dilihat [disini](http://100.25.29.134:5010/)
+Hasil dari project ini dapat dilihat [disini](https://zwallet-webku-4l5mjoqpw-nevalenaginda.vercel.app/)
