@@ -1,6 +1,13 @@
-# Zwallet
+<h1 align="center">ARVA ONLINE SHOP</h1>
+<p>Zwallet Web-Ku adalah Aplikasi E-Wallet dengan keamanan PIN dan Password sehingga user dapat bertransaksi dengan aman.</p>
+<p align="center">
+  <img height="150" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/1200px-Nextjs-logo.svg.png"/>&nbsp;
+</p>
+<p align="center">
+  Built with Next Js.
+</p>
 
-Zwallet adalah aplikasi website yang menyediakan fitur transfer antar pengguna. Ini adalah layanan frontend untuk aplikasi ini. Anda dapat melihat layanan backend [disini](https://github.com/nevalenaginda/Backend-Zwallet/tree/week2).
+
 
 
 ### Dependencies
