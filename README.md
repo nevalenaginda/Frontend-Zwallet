@@ -1,5 +1,5 @@
-<h1 align="center">ARVA ONLINE SHOP</h1>
-<p>Zwallet Web-Ku adalah Aplikasi E-Wallet dengan keamanan PIN dan Password sehingga user dapat bertransaksi dengan aman.</p>
+<h1 align="center">Zwallet Web-Ku</h1>
+<p align="center">Zwallet Web-Ku adalah Aplikasi E-Wallet dengan keamanan PIN dan Password sehingga user dapat bertransaksi dengan aman.</p>
 <p align="center">
   <img height="150" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/1200px-Nextjs-logo.svg.png"/>&nbsp;
 </p>
