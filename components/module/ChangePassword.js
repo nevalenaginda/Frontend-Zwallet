@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Router } from "next/router";
+import { useRouter } from "next/router";
 
 function ChangePassword() {
+  const router = useRouter();
   let [typeCurrentPw, setTypeCurrentPw] = useState(false);
   const [curPw, setCurPw] = useState("");
   const [newPw, setNewPw] = useState("");
@@ -38,6 +39,7 @@ function ChangePassword() {
           withCredentials: true,
         })
         .then((res) => {
+          router.push("/profile");
           Swal.fire({
             title: "Success!",
             text: res.data.message,
@@ -45,7 +47,6 @@ function ChangePassword() {
             confirmButtonText: "Ok",
             confirmButtonColor: "#6379f4;",
           });
-          Router.push("/profile");
         })
         .catch((err) => {
           Swal.fire({

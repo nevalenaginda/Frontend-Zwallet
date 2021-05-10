@@ -57,7 +57,7 @@ function TransactionHistory() {
   }
 
   useEffect(() => {
-    dispatch(getAllHistory(idUser, 10));
+    dispatch(getAllHistory(idUser, 20));
   }, [dispatch]);
   // console.log(allHistory);
   // modal

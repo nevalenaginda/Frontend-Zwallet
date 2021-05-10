@@ -62,7 +62,7 @@ function login() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
         Swal.fire({
           title: "Error!",
           text: err.response.data.message,
