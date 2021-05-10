@@ -47,17 +47,36 @@ npm run lint
 ---
 
 
-## Hasil Web Chating
+## Fitur Web Zwallet
+
+### Landing Page
+![screencapture-localhost-3000-2021-05-04-17_57_43 (1)](https://user-images.githubusercontent.com/55057008/117717187-b028a880-b204-11eb-9ae8-810429b352f4.png)
+
 
 ### Register
-![capture1](https://github.com/nevalenaginda/frontend-react-chat/blob/main/Screen%20Shots/screencapture-localhost-3000-register-2021-05-04-10_08_49.png)
+![screencapture-localhost-3000-auth-register-2021-05-04-17_59_16](https://user-images.githubusercontent.com/55057008/117717428-ff6ed900-b204-11eb-98f2-f02e4fc5390a.png)
 
-### Personal Chating
-![Capture3](https://github.com/nevalenaginda/frontend-react-chat/blob/main/Screen%20Shots/screencapture-localhost-3000-chat-2021-05-04-15_54_54.png)
+### Login
+![screencapture-localhost-3000-auth-login-2021-05-04-17_58_17](https://user-images.githubusercontent.com/55057008/117717471-0eee2200-b205-11eb-9a34-a5102fecd101.png)
 
-### Edit Profile
-![Capture5](https://github.com/nevalenaginda/frontend-react-chat/blob/main/Screen%20Shots/screencapture-localhost-3000-chat-2021-05-04-15_57_04.png)
 
+### Dashboard
+![screencapture-localhost-3000-dashboard-2021-05-11-02_27_19](https://user-images.githubusercontent.com/55057008/117717605-380eb280-b205-11eb-8030-d91028c0f26d.png)
+
+### Transfer
+![screencapture-localhost-3000-transfer-amount-and-note-2021-05-11-02_13_47](https://user-images.githubusercontent.com/55057008/117717728-61c7d980-b205-11eb-96d1-8f588d5ff13a.png)
+
+### History Transfer
+![screencapture-localhost-3000-transfer-history-2021-05-11-02_14_21](https://user-images.githubusercontent.com/55057008/117717795-7b692100-b205-11eb-972d-471c30892dd5.png)
+
+### Profile
+![screencapture-localhost-3000-profile-2021-05-11-01_57_24 (1)](https://user-images.githubusercontent.com/55057008/117717894-99368600-b205-11eb-8dc1-aaa283209b6f.png)
+
+### Change Pin
+![screencapture-localhost-3000-profile-change-pin-2021-05-11-02_03_47](https://user-images.githubusercontent.com/55057008/117718025-bff4bc80-b205-11eb-82f5-7e44f03321d2.png)
+
+### Change Password
+![screencapture-localhost-3000-profile-change-password-2021-05-11-02_02_54](https://user-images.githubusercontent.com/55057008/117718081-d7cc4080-b205-11eb-87d9-1579c544d90c.png)
 ---
 
 ## Backend
