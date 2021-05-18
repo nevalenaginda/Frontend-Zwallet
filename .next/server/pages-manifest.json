@@ -2,12 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/dashboard": "pages/dashboard.js",
-  "/history/[id]": "pages/history/[id].js",
-  "/transfer/amount-and-note": "pages/transfer/amount-and-note.js",
-  "/transfer": "pages/transfer.js",
-  "/transfer/detail": "pages/transfer/detail.js",
-  "/transfer/history": "pages/transfer/history.js",
-  "/history": "pages/history.js",
-  "/auth/login": "pages/auth/login.js"
+  "/auth/login": "pages/auth/login.js",
+  "/dashboard": "pages/dashboard.js"
 }

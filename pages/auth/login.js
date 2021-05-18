@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Swal from "sweetalert2";
@@ -72,6 +72,12 @@ function login() {
         });
       });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/dashboard");
+    }
+  }, []);
 
   return (
     <Layout title={"Login"}>

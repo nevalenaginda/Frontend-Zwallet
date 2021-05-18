@@ -26,7 +26,7 @@ function SearchReceiver() {
   const [dataAllUser, setAllDataUser] = useState({});
   const [searchName, setSearchName] = useState("");
 
-  let [queryLimit, setQueryLimit] = useState("1");
+  let [queryLimit, setQueryLimit] = useState("4");
   let [queryPage, setQueryPage] = useState("1");
   let [totalPage, setTotalPage] = useState("1");
   let [queryOrder, setQueryOrder] = useState("asc");
@@ -67,10 +67,6 @@ function SearchReceiver() {
   ];
 
   const limit = [
-    {
-      label: "Limit 1",
-      value: "1",
-    },
     {
       label: "Limit 4",
       value: "4",

@@ -1,7 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import AsideLeft from "../../components/module/AsideLeft";
+import Router from "next/Router";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 function resetPassword() {
+  const [email, setEmail] = useState("");
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
+    const data = { email };
+    axios
+      .post(`${URLAPI}forgotPassword`, data, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        Swal.fire({
+          title: "Success!",
+          text: res.data.message,
+          icon: "success",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#6379f4;",
+        }).then((result) => {
+          if (result.isConfirmed) {
+          }
+          setEmail("");
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        Swal.fire({
+          title: "Error!",
+          text: err.response.data.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#a4a7b4",
+        });
+      });
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      Router.push("/dashboard");
+    }
+  }, []);
+
   return (
     <div>
       <div className="row min-vh-100 no-gutters">
@@ -43,7 +88,7 @@ function resetPassword() {
                 </div>
                 {/* <!-- End Of for mobile < md --> */}
                 <div className="mt-md-5">
-                  <form>
+                  <form onSubmit={onSubmitHandler}>
                     <div className="input-group mb-4">
                       <div className="input-group-prepend">
                         <span
@@ -57,6 +102,8 @@ function resetPassword() {
                         type="email"
                         className="form-control border-top-0 border-left-0 border-right-0 rounded-0"
                         placeholder="Enter your e-mail"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                       />
                     </div>

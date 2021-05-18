@@ -9,7 +9,7 @@ import AmmountNotes from "../../components/module/AmmountNotes";
 function home() {
   const router = useRouter();
   return (
-    <div className="bg-light min-vh-100">
+    <div className="bg-light">
       <div className="d-none d-md-block">
         <Navbar />
       </div>
@@ -18,7 +18,7 @@ function home() {
           <div className="col-3 d-none d-lg-block">
             <SideBar></SideBar>
           </div>
-          <div className="col py-5">
+          <div className="col py-5 py-lg-0">
             <AmmountNotes />
           </div>
         </div>

@@ -67,7 +67,7 @@ function AmmountNotes() {
 
   return (
     <div className="">
-      <div className="container d-flex d-lg-none">
+      <div className="container d-flex d-lg-none mb-3 ">
         <Link href="/transfer">
           <div className="text-dark mr-3">
             <h5 className="m-0 font-weight-bold align-self-center">
@@ -77,7 +77,7 @@ function AmmountNotes() {
         </Link>
         <h5 className="m-0 align-self-center font-weight-bold">Transfer</h5>
       </div>
-      <div className="card border-0 shadow card-lg my-lg-5">
+      <div className="card border-0 shadow card-lg">
         <div className="card-body">
           <h5 className="font-weight-bold d-none d-lg-block">Transfer Money</h5>
           <div className="card border-0 shadow mb-4">

@@ -13,19 +13,25 @@ function NavBar() {
   const { totalNotif } = useSelector((state) => state.history);
 
   let token, idUser;
-  if (process.browser) {
-    token = localStorage.getItem("token");
-    idUser = localStorage.getItem("id");
-    if (!token) {
-      router.push("/auth/login");
-    }
-  }
 
   useEffect(() => {
-    dispatch(getUser()).then((res) => {
-      dispatch(getAllNotifications(idUser));
-    });
+    token = localStorage.getItem("token");
+    if (token) {
+      dispatch(getUser()).then((res) => {
+        dispatch(getAllNotifications(idUser));
+      });
+    }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (process.browser) {
+      token = localStorage.getItem("token");
+      idUser = localStorage.getItem("id");
+      if (!token) {
+        router.push("/auth/login");
+      }
+    }
+  }, []);
 
   return (
     <nav className={`bg-white shadow h-navbar`}>

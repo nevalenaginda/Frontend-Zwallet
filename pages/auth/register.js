@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -52,6 +52,13 @@ function register() {
     newData[event.target.name] = event.target.value;
     setDataSignUp(newData);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      router.push("/dashboard");
+    }
+  }, []);
+
   return (
     <div>
       <div className="row min-vh-100 no-gutters">
