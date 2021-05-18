@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import AsideLeft from "../../components/module/AsideLeft";
-import Router from "next/Router";
+import { useRouter } from "next/router";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 function resetPassword() {
   const [email, setEmail] = useState("");
-
+  const router = useRouter();
   const onSubmitHandler = (event) => {
     event.preventDefault();
     const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
@@ -43,7 +43,7 @@ function resetPassword() {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      Router.push("/dashboard");
+      router.push("/dashboard");
     }
   }, []);
 
