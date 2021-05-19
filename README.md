@@ -1,16 +1,46 @@
-<h1 align="center">Zwallet Web-Ku</h1>
-<p align="center">Zwallet Web-Ku adalah Aplikasi E-Wallet dengan keamanan PIN dan Password sehingga user dapat bertransaksi dengan aman.</p>
+<h1 align="center">Zwallet</h1>
 <p align="center">
-  <img height="150" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/1200px-Nextjs-logo.svg.png"/>&nbsp;
-</p>
-<p align="center">
-  Built with Next Js.
+  <a href="http://zwallet-webku.naginda.site/" target="_blank"><img src="https://github.com/chaerulmarwan20/zwallet-frontend/raw/master/public/images/Zwallet.png" width="400" alt="Zwallet" border="0" /></a>
 </p>
 
+## Table of Contents
 
+- [Introduction](#introduction)
+- [Features](#features)
+- [Built With](#built-with)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Screenshots](#screenshots)
+- [Related Project](#related-project)
 
+## Introduction
 
-### Dependencies
+My Zwallet Web is an E-Wallet Application with PIN and Password security so that users can transact safely.
+
+## Features
+
+- Authentication
+
+- Topup
+
+- Transfer
+
+- Realtime balance
+
+- Upload image profile
+
+- Reset password
+
+- PIN security while transfer, and topup
+
+- Change password
+
+- Change pin
+
+- Change profile
+
+## Built With
+
 - [NextJS](https://nextjs.org/)
 - [Axios](https://www.npmjs.com/package/axios)
 - [bootstrap](https://www.npmjs.com/package/bootstrap)
@@ -21,73 +51,49 @@
 - [redux-logger](https://www.npmjs.com/package/redux-logger)
 - [redux-thunk](https://www.npmjs.com/search?q=redux-thunk)
 
----
+## Prerequisites
 
-## Project setup
+- [NodeJs](https://nodejs.org/en/download/)
+- [Backend Zwallet](https://github.com/nevalenaginda/Backend-Zwallet/tree/week2)
 
-- Silahkan buka terminal pada VScode dengan cara tekan tombol
-```
-CTRL + ` 
-atau
-CTRL + SHIFT + C
-```
+## Installation
 
-- Kemudian lakukan install npm terlebih dahulu dengan membuat perintah seperti berikut
+1. Open your terminal or command prompt. Then, clone the repo.
+
 ```
-npm install atau npm i
+$ git clone git clone https://github.com/nevalenaginda/Frontend-Zwallet.git
 ```
 
-- Jika sudah, maka untuk menjalankan silahkan ketikan perintah berikut ini
-```
-npm run start
-```
+2. Open this project.
 
-### Compiles and minifies for production
 ```
-npm run build
+$ cd Frontend-Zwallet
+$ npm install
 ```
 
-### Lints and fixes files
+3. Run this application.
+
 ```
-npm run lint
+$ npm run dev
 ```
----
 
+## Screenshots
 
-## Fitur Web Zwallet
+<p align="center">
+  <span>
+    <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717187-b028a880-b204-11eb-9ae8-810429b352f4.png">   
+    <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717428-ff6ed900-b204-11eb-98f2-f02e4fc5390a.png">  
+    <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717428-ff6ed900-b204-11eb-98f2-f02e4fc5390a.png">
+    <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717605-380eb280-b205-11eb-8030-d91028c0f26d.png">   
+    <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717728-61c7d980-b205-11eb-96d1-8f588d5ff13a.png">   
+	<img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717795-7b692100-b205-11eb-972d-471c30892dd5.png">
+	<img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717894-99368600-b205-11eb-8dc1-aaa283209b6f.png">
+	<img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117718025-bff4bc80-b205-11eb-82f5-7e44f03321d2.png">
+	<img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117718081-d7cc4080-b205-11eb-87d9-1579c544d90c.png">
+  </span>
+</p>
 
-### Landing Page
-![screencapture-localhost-3000-2021-05-04-17_57_43 (1)](https://user-images.githubusercontent.com/55057008/117717187-b028a880-b204-11eb-9ae8-810429b352f4.png)
+## Related Project
 
-
-### Register
-![screencapture-localhost-3000-auth-register-2021-05-04-17_59_16](https://user-images.githubusercontent.com/55057008/117717428-ff6ed900-b204-11eb-98f2-f02e4fc5390a.png)
-
-### Login
-![screencapture-localhost-3000-auth-login-2021-05-04-17_58_17](https://user-images.githubusercontent.com/55057008/117717471-0eee2200-b205-11eb-9a34-a5102fecd101.png)
-
-
-### Dashboard
-![screencapture-localhost-3000-dashboard-2021-05-11-02_27_19](https://user-images.githubusercontent.com/55057008/117717605-380eb280-b205-11eb-8030-d91028c0f26d.png)
-
-### Transfer
-![screencapture-localhost-3000-transfer-amount-and-note-2021-05-11-02_13_47](https://user-images.githubusercontent.com/55057008/117717728-61c7d980-b205-11eb-96d1-8f588d5ff13a.png)
-
-### History Transfer
-![screencapture-localhost-3000-transfer-history-2021-05-11-02_14_21](https://user-images.githubusercontent.com/55057008/117717795-7b692100-b205-11eb-972d-471c30892dd5.png)
-
-### Profile
-![screencapture-localhost-3000-profile-2021-05-11-01_57_24 (1)](https://user-images.githubusercontent.com/55057008/117717894-99368600-b205-11eb-8dc1-aaa283209b6f.png)
-
-### Change Pin
-![screencapture-localhost-3000-profile-change-pin-2021-05-11-02_03_47](https://user-images.githubusercontent.com/55057008/117718025-bff4bc80-b205-11eb-82f5-7e44f03321d2.png)
-
-### Change Password
-![screencapture-localhost-3000-profile-change-password-2021-05-11-02_02_54](https://user-images.githubusercontent.com/55057008/117718081-d7cc4080-b205-11eb-87d9-1579c544d90c.png)
----
-
-## Backend
-Silahkan klik link berikut [ini](https://github.com/nevalenaginda/Backend-Zwallet/tree/week2)
-
-## Deploy
-Hasil dari project ini dapat dilihat [disini](https://zwallet-webku-4l5mjoqpw-nevalenaginda.vercel.app/)
+- :white_check_mark: [`Backend Zwallet`](https://github.com/nevalenaginda/Backend-Zwallet/tree/week2)
+- :rocket: [`Production`](http://zwallet-webku.naginda.site/)
