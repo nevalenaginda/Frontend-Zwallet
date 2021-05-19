@@ -4,9 +4,9 @@ module.exports = withImages({
     return config;
   },
   env: {
-    api: "http://localhost:5001/api/",
-    image: "http://localhost:5001",
-    api_fe: "http://localhost:3000",
+    api: "http://178.128.80.182:5001/api/",
+    image: "http://178.128.80.182:5001",
+    api_fe: "http://178.128.80.182:3000",
   },
 });
 // yang simple

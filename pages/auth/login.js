@@ -24,7 +24,7 @@ function login() {
     event.preventDefault();
     const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
     axios
-      .post(`${URLAPI}login/`, dataLogin, {
+      .post(`${URLAPI}login`, dataLogin, {
         withCredentials: true,
       })
       .then((res) => {
