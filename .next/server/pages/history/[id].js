@@ -194,7 +194,8 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ index; });
-__webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return /* binding */ getServerSideProps; });
+__webpack_require__.d(__webpack_exports__, "getStaticProps", function() { return /* binding */ getStaticProps; });
+__webpack_require__.d(__webpack_exports__, "getStaticPaths", function() { return /* binding */ getStaticPaths; });
 
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__("F5FC");
@@ -464,82 +465,22 @@ function index({
       children: []
     })]
   });
-} // export const getStaticProps = async (ctx) => {
-//   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
-//   try {
-//     const id = ctx.params.id;
-//     const result = await axios.get(`${URLAPI}detailHistory/${id}`, {
-//       withCredentials: true,
-//     });
-//     const data = result.data.data;
-//     return {
-//       props: {
-//         details: data,
-//       },
-//     };
-//   } catch (err) {
-//     return {
-//       props: {
-//         details: null,
-//       },
-//     };
-//   }
-// };
-// export const getStaticPaths = async () => {
-//   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
-//   const result = await axios.get(`${URLAPI}historyAdmin?limit=100`, {
-//     withCredentials: true,
-//   });
-//   const data = result.data.data;
-//   const paths = data.map((item) => {
-//     return {
-//       params: { id: item.id.toString() },
-//     };
-//   });
-//   return {
-//     fallback: true,
-//     paths: paths,
-//   };
-// };
-
-const getServerSideProps = async ctx => {
+}
+const getStaticProps = async ctx => {
   const URLAPI = "https://zwallet.naginda.site/api/";
-  const URLFE = "https://zwallet-webku.naginda.site";
-  const id = ctx.params.id;
 
   try {
-    let cookie = "";
-
-    if (ctx.req) {
-      cookie = ctx.req.headers.cookie;
-    }
-
-    const res = await external_axios_default.a.get(`${URLAPI}detailHistory/${id}`, {
-      withCredentials: true,
-      headers: {
-        cookie: cookie
-      }
+    const id = ctx.params.id;
+    const result = await external_axios_default.a.get(`${URLAPI}detailHistory/${id}`, {
+      withCredentials: true
     });
-    const data = res.data.data;
+    const data = result.data.data;
     return {
       props: {
         details: data
       }
     };
-  } catch (error) {
-    console.log(error);
-
-    if (ctx.req) {
-      ctx.res.writeHead(301, {
-        Location: `${URLFE}/auth/login`
-      });
-      ctx.res.end();
-    }
-
-    if (!ctx.req) {
-      Router.push("/auth/login");
-    }
-
+  } catch (err) {
     return {
       props: {
         details: null
@@ -547,6 +488,52 @@ const getServerSideProps = async ctx => {
     };
   }
 };
+const getStaticPaths = async () => {
+  const URLAPI = "https://zwallet.naginda.site/api/";
+  const result = await external_axios_default.a.get(`${URLAPI}historyAdmin?limit=100`, {
+    withCredentials: true
+  });
+  const data = result.data.data;
+  const paths = data.map(item => {
+    return {
+      params: {
+        id: item.id.toString()
+      }
+    };
+  });
+  return {
+    fallback: true,
+    paths: paths
+  };
+}; // export const getServerSideProps = async (ctx) => {
+//   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
+//   const URLFE = process.env.NEXT_PUBLIC_URL_FRONT_END_NO_SLASH;
+//   const id = ctx.params.id;
+//   try {
+//     let cookie = "";
+//     if (ctx.req) {
+//       cookie = ctx.req.headers.cookie;
+//     }
+//     const res = await axios.get(`${URLAPI}detailHistory/${id}`, {
+//       withCredentials: true,
+//       headers: {
+//         cookie: cookie,
+//       },
+//     });
+//     const data = res.data.data;
+//     return { props: { details: data } };
+//   } catch (error) {
+//     console.log(error);
+//     if (ctx.req) {
+//       ctx.res.writeHead(301, { Location: `${URLFE}/auth/login` });
+//       ctx.res.end();
+//     }
+//     if (!ctx.req) {
+//       Router.push("/auth/login");
+//     }
+//     return { props: { details: null } };
+//   }
+// };
 
 /***/ }),
 
