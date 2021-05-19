@@ -247,7 +247,7 @@ function DetailHistoryTransfer({
   details
 }) {
   const router = Object(router_["useRouter"])();
-  const urlImg = "http://178.128.80.182:5001";
+  const urlImg = "https://zwallet.naginda.site";
   return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
     className: "jsx-169527562" + " " + "",
     children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
@@ -503,8 +503,8 @@ function index({
 // };
 
 const getServerSideProps = async ctx => {
-  const URLAPI = "http://178.128.80.182:5001/api/";
-  const URLFE = "http://localhost:3000";
+  const URLAPI = "https://zwallet.naginda.site/api/";
+  const URLFE = "https://zwallet-webku.naginda.site";
   const id = ctx.params.id;
 
   try {
@@ -867,7 +867,7 @@ module.exports = __webpack_require__("0Kf+");
 
 const getUser = () => dispatch => {
   return new Promise((resolve, reject) => {
-    const URLAPI = "http://178.128.80.182:5001/api/";
+    const URLAPI = "https://zwallet.naginda.site/api/";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`${URLAPI}profile`, {
       withCredentials: true
     }).then(res => {
@@ -883,7 +883,7 @@ const getUser = () => dispatch => {
 };
 const updateUser = (data, id) => dispatch => {
   return new Promise((resolve, reject) => {
-    const URLAPI = "http://178.128.80.182:5001/api/";
+    const URLAPI = "https://zwallet.naginda.site/api/";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch(`${URLAPI}user/${id}`, data, {
       withCredentials: true
     }).then(res => {
@@ -896,7 +896,7 @@ const updateUser = (data, id) => dispatch => {
 };
 const checkPin = (data, id) => dispatch => {
   return new Promise((resolve, reject) => {
-    const URLAPI = "http://178.128.80.182:5001/api/";
+    const URLAPI = "https://zwallet.naginda.site/api/";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(`${URLAPI}loginPIN/${id}`, data, {
       withCredentials: true
     }).then(res => {
@@ -952,7 +952,7 @@ if (false) {}
 
 const getAllHistory = (id, limit = 3, sort = "desc") => dispatch => {
   return new Promise((resolve, reject) => {
-    const URLAPI = "http://178.128.80.182:5001/api/";
+    const URLAPI = "https://zwallet.naginda.site/api/";
     dispatch({
       type: "REQUEST_ALL_HISTORY"
     });
@@ -976,7 +976,7 @@ const getAllHistory = (id, limit = 3, sort = "desc") => dispatch => {
 };
 const getAllNotifications = idUser => dispatch => {
   return new Promise((resolve, reject) => {
-    const URLAPI = "http://178.128.80.182:5001/api/";
+    const URLAPI = "https://zwallet.naginda.site/api/";
     dispatch({
       type: "REQUEST_ALL_NOTIFICATIONS"
     });
@@ -1010,7 +1010,7 @@ const getAllNotifications = idUser => dispatch => {
 };
 const getDetailHistory = id => dispatch => {
   return new Promise((resolve, reject) => {
-    const URLAPI = "http://178.128.80.182:5001/api/";
+    const URLAPI = "https://zwallet.naginda.site/api/";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`${URLAPI}detailHistory/${id}`, {
       withCredentials: true
     }).then(res => {
@@ -1520,7 +1520,7 @@ exports.normalizePathTrailingSlash = normalizePathTrailingSlash;
 function NavBar() {
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_3__["useRouter"])();
   const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useDispatch"])();
-  const urlImg = "http://178.128.80.182:5001";
+  const urlImg = "https://zwallet.naginda.site";
   const {
     user: dataUser
   } = Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["useSelector"])(state => state.user);
