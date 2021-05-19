@@ -80,8 +80,7 @@ $ npm run dev
 ## Screenshots
 
 <p align="center">
-  <span>
-       
+  <span>  
     <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717428-ff6ed900-b204-11eb-98f2-f02e4fc5390a.png">  
     <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717428-ff6ed900-b204-11eb-98f2-f02e4fc5390a.png">
     <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/118862762-4ac16f80-b908-11eb-8d53-0c1330cd20e0.png">
