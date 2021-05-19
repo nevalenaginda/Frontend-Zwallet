@@ -81,7 +81,7 @@ $ npm run dev
 
 <p align="center">
   <span>
-    <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717187-b028a880-b204-11eb-9ae8-810429b352f4.png">   
+    <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/118862762-4ac16f80-b908-11eb-8d53-0c1330cd20e0.png">   
     <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717428-ff6ed900-b204-11eb-98f2-f02e4fc5390a.png">  
     <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717428-ff6ed900-b204-11eb-98f2-f02e4fc5390a.png">
     <img width="400" height="auto" src="https://user-images.githubusercontent.com/55057008/117717605-380eb280-b205-11eb-8030-d91028c0f26d.png">   
