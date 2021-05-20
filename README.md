@@ -15,7 +15,7 @@
 
 ## Introduction
 
-My Zwallet Web is an E-Wallet Application with PIN and Password security so that users can transact safely.
+Zwallet Web is an E-Wallet Application with PIN and Password security so that users can transact safely.
 
 ## Features
 
