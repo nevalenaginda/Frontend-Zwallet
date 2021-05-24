@@ -10,8 +10,8 @@
 - [Built With](#built-with)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Screenshots](#screenshots)
-- [Related Project](#related-project)
+- [Preview](#preview)
+- [Link](#link)
 
 ## Introduction
 
@@ -77,7 +77,7 @@ $ npm install
 $ npm run dev
 ```
 
-## Screenshots
+## Preview
 
 <p align="center">
   <span>  
@@ -94,7 +94,7 @@ $ npm run dev
   </span>
 </p>
 
-## Related Project
+## Link
 
 - :white_check_mark: [`Backend Zwallet`](https://github.com/nevalenaginda/Backend-Zwallet/tree/week2)
 - :rocket: [`Production`](http://zwallet-webku.naginda.site/)
