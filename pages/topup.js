@@ -6,11 +6,10 @@ import HowToTopUp from "../components/module/HowToTopUp";
 function home() {
   return (
     <div className="bg-light min-vh-100">
-      <div className="d-none d-md-block">
-        <Navbar />
-      </div>
+      <Navbar />
+
       <div className="container">
-        <div className="row py-lg-5">
+        <div className="row py-5">
           <div className="col-3 d-none d-md-block">
             <SideBar />
           </div>
@@ -19,9 +18,8 @@ function home() {
           </div>
         </div>
       </div>
-      <div className="d-none d-md-block">
-        <Footer />
-      </div>
+
+      <Footer />
     </div>
   );
 }

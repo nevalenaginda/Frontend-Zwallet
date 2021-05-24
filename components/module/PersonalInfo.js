@@ -1,46 +1,35 @@
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import Router from "next/router";
 
-function PersonalInfo() {
-  const [dataUser, setDataUser] = useState({});
-  let idUser, token;
-  if (process.browser) {
-    idUser = localStorage.getItem("id");
-    token = localStorage.getItem("token");
-  }
-
-  useEffect(() => {
-    const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
-
-    axios
-      .get(`${URLAPI}user/${idUser}`, { headers: { token } })
-      .then((res) => {
-        console.log(res.data.data);
-        setDataUser(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        setDataUser({});
-      });
-  }, []);
-
+function PersonalInfo({ name, email, phone }) {
+  const handlePhone = (e) => {
+    e.preventDefault();
+    if (phone.length < 3) {
+      Router.push("/profile/add-phone-number");
+    } else {
+      Router.push("/profile/manage-phone-number");
+    }
+  };
   return (
     <div>
       <div className="card border-0 shadow radius-12">
         <div className="card-body">
           <h5 className="font-weight-bold mb-4">Personal Information</h5>
-          <p className="text-muted">
+          <p className="text-muted d-none d-md-block">
             We got your personal information from the sign <br />
             up process. If you want to make changes on <br />
             your information, contact our support.
+          </p>
+          <p className="text-muted d-sm-block d-md-none">
+            We got your personal information from the sign up process. If you
+            want to make changes on your information, contact our support.
           </p>
           <div className="py-3">
             <div className="card border-0 shadow mb-3">
               <div className="card-body">
                 <p className="text-muted">Username</p>
-                {dataUser.name ? (
-                  <h5 className="font-weight-bold m-0">{dataUser.name}</h5>
+                {name ? (
+                  <h5 className="font-weight-bold m-0">{name}</h5>
                 ) : (
                   <h5 className="font-weight-bold m-0"></h5>
                 )}
@@ -49,8 +38,8 @@ function PersonalInfo() {
             <div className="card border-0 shadow mb-3">
               <div className="card-body">
                 <p className="text-muted">Verified E-mail</p>
-                {dataUser.email ? (
-                  <h5 className="font-weight-bold m-0">{dataUser.email}</h5>
+                {email ? (
+                  <h5 className="font-weight-bold m-0">{email}</h5>
                 ) : (
                   <h5 className="font-weight-bold m-0"></h5>
                 )}
@@ -60,22 +49,18 @@ function PersonalInfo() {
               <div className="card-body">
                 <p className="text-muted">Phone Number</p>
                 <div className="d-flex justify-content-between">
-                  {dataUser.phone ? (
-                    <h5 className="font-weight-bold m-0">{dataUser.phone}</h5>
+                  {phone ? (
+                    <h5 className="font-weight-bold m-0">{phone}</h5>
                   ) : (
                     <h5 className="font-weight-bold m-0"></h5>
                   )}
 
-                  <Link
-                    href={{
-                      pathname: "/profile/manage-phone-number",
-                      query: { phone: dataUser.phone },
-                    }}
+                  <a
+                    className="text-blue text-decoration-none font-weight-bold"
+                    onClick={handlePhone}
                   >
-                    <a className="text-blue text-decoration-none font-weight-bold">
-                      Manage
-                    </a>
-                  </Link>
+                    {phone.length < 3 ? "Add" : "Manage"}
+                  </a>
                 </div>
               </div>
             </div>

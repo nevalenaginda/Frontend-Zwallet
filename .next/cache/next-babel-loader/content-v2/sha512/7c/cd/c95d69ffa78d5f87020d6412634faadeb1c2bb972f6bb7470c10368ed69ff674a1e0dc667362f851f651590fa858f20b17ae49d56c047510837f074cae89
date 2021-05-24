@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Moment from \"moment\";\nexport default function changeTime(time) {\n  return Moment(time).format(\"MMMM DD, YYYY - HH.mm\");\n}","map":null,"metadata":{},"sourceType":"module"}

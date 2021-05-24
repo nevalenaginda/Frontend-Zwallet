@@ -11,8 +11,7 @@ function SideBar() {
   const handleLogOut = (event) => {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
-    localStorage.removeItem("name");
-    router.push("/login");
+    router.push("/auth/login");
   };
   return (
     <div className="h-100">
@@ -25,7 +24,7 @@ function SideBar() {
                   className={`container mt-5 text-muted ${
                     router.asPath === "/dashboard"
                       ? "active"
-                      : router.asPath === "/history"
+                      : router.asPath.includes("/history/")
                       ? "active"
                       : ""
                   }`}

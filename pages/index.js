@@ -21,14 +21,14 @@ export default function Home() {
               <button
                 className="btn btn-outline-light font-weight-bold mr-4"
                 style={{ borderRadius: "12px" }}
-                onClick={(e) => router.push("/login")}
+                onClick={(e) => router.push("/auth/login")}
               >
                 Login
               </button>
               <button
                 className="btn btn-light font-weight-bold text-blue"
                 style={{ borderRadius: "12px" }}
-                onClick={(e) => router.push("/sign-up")}
+                onClick={(e) => router.push("/auth/register")}
               >
                 Sign Up
               </button>
@@ -49,7 +49,7 @@ export default function Home() {
               <button
                 className="btn btn-light text-blue"
                 style={{ borderRadius: "12px" }}
-                onClick={(e) => router.push("/login")}
+                onClick={(e) => router.push("/auth/login")}
               >
                 Try It Free
               </button>
@@ -151,7 +151,11 @@ export default function Home() {
               />
             </div>
             <div className="col-6 col-lg-2 col-md-4 text-center">
-              <img className="img-fluid" src="/assets/brands/hnm.svg" alt="" />
+              <img
+                className="img-fluid"
+                src={require("../assets/images/brands/hnm.svg")}
+                alt=""
+              />
             </div>
             <div className="col-6 col-lg-2 col-md-4 text-center">
               <img

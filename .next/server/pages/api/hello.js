@@ -88,12 +88,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("Nxiy");
@@ -109,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 /* harmony default export */ __webpack_exports__["default"] = ((req, res) => {
   res.status(200).json({
-    name: 'John Doe'
+    name: "John Doe"
   });
 });
 

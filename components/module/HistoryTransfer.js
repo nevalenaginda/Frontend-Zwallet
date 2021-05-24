@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import toRupiah from "../../helpers/curencyToIDR";
 
 function HistoryTransfer() {
   const router = useRouter();
   const [role, setRole] = useState("failed");
+  const { status, message, transfer, dataTarget } = useSelector(
+    (state) => state.transfer
+  );
+  const urlImg = process.env.NEXT_PUBLIC_URL_IMAGE_NO_SLASH;
 
+  useEffect(() => {
+    if (!transfer.amount && !dataTarget.id) {
+      router.push("/dashboard");
+    } else {
+      setRole(status);
+    }
+  }, [role]);
+
+  //if reload push to transfer
   return (
     <div className="">
       <div className="card border-0 shadow card-lg py-4">
@@ -28,7 +43,7 @@ function HistoryTransfer() {
                   Transfer Failed
                 </h5>
                 <h6 className="font-weight-bold text-muted text-center">
-                  failed reason
+                  {message}
                 </h6>
               </div>
             </div>
@@ -37,39 +52,57 @@ function HistoryTransfer() {
           <div className="card shadow border-0 mb-3">
             <div className="card-body">
               <p>Amount</p>
-              <h5 className="font-weight-bold m-0">Rp sekian</h5>
+              {transfer.amount && (
+                <h5 className="font-weight-bold m-0">
+                  Rp {toRupiah(transfer.amount)}
+                </h5>
+              )}
             </div>
           </div>
           <div className="card shadow border-0 mb-3">
             <div className="card-body">
               <p>Balance Left</p>
-              <h5 className="font-weight-bold m-0">Rp sekian</h5>
+              {transfer.balanceLeft && (
+                <h5 className="font-weight-bold m-0">
+                  Rp {toRupiah(transfer.balanceLeft)}
+                </h5>
+              )}
             </div>
           </div>
           <div className="card shadow border-0 mb-3">
             <div className="card-body">
               <p>Date & Time</p>
-              <h5 className="font-weight-bold m-0">date</h5>
+              {transfer.dateTime && (
+                <h5 className="font-weight-bold m-0">{transfer.dateTime}</h5>
+              )}
             </div>
           </div>
           <div className="card shadow border-0 mb-4">
             <div className="card-body">
               <p>Notes</p>
-              <h5 className="font-weight-bold m-0"> notes </h5>
+              {transfer.notes && (
+                <h5 className="font-weight-bold m-0">{transfer.notes}</h5>
+              )}
             </div>
           </div>
           <h5 className="font-weight-bold">Transfer to</h5>
           <div className="card shadow border-0">
             <div className="card-body d-flex">
-              <img
-                className="img-people mr-4"
-                src={require("../../assets/images/default-user.svg")}
-                alt=""
-              />
+              {dataTarget.image && (
+                <img
+                  className="img-people mr-4"
+                  src={`${urlImg}/images/${dataTarget.image}`}
+                  alt=""
+                />
+              )}
 
               <div className="align-self-center">
-                <h5 className="font-weight-bold">Name</h5>
-                <p className="text-muted m-0">Phone</p>
+                {dataTarget.name && (
+                  <h5 className="font-weight-bold">{dataTarget.name}</h5>
+                )}
+                {dataTarget.phone && (
+                  <p className="text-muted m-0">{dataTarget.phone}</p>
+                )}
               </div>
             </div>
           </div>
@@ -78,10 +111,9 @@ function HistoryTransfer() {
               <i className="bi bi-share"></i>
             </button>
             <button className="btn btn-gray mr-2 text-blue radius-12 px-3 py-2 font-weight-bold d-none d-lg-block">
-              <i className="bi bi-cloud-arrow-down"></i>
-              Download PDF
+              <i className="bi bi-cloud-arrow-down"></i> &nbsp; Download PDF
             </button>
-            <button className="btn btn-blue radius-12 px-3 py-2 font-weight-bold btn-block d-block d-lg-none">
+            <button className="btn btn-blue radius-12 px-3 py-2 font-weight-bold btn-block d-block d-lg-none" onClick={(e) => router.push("/dashboard")}>
               Back to Home
             </button>
             <button

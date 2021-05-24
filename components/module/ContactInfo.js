@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import axios from "axios";
 
 function ContacInfo() {
   const [dataAllUser, setAllDataUser] = useState({});
   const urlImg = process.env.NEXT_PUBLIC_URL_IMAGE_NO_SLASH;
   const URLAPI = process.env.NEXT_PUBLIC_URL_API_WITH_SLASH;
+  const [message, setMessage] = useState("");
 
   let idUser, token;
   if (process.browser) {
@@ -16,14 +17,14 @@ function ContacInfo() {
   useEffect(() => {
     axios
       .get(`${URLAPI}allUser/${idUser}`, {
-        headers: { token },
+        withCredentials: true,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setAllDataUser(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setMessage(err.response.data.message);
       });
   }, []);
@@ -44,7 +45,7 @@ function ContacInfo() {
             {dataAllUser.data
               ? dataAllUser.data.map((itm, idx) => {
                   return (
-                    <div className="d-flex mb-2">
+                    <div className="d-flex mb-2" key={idx}>
                       <img
                         className="img-people radius-12 mr-2"
                         src={`${urlImg}/images/${itm.image}`}
