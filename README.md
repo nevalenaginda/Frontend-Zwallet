@@ -15,7 +15,7 @@
 
 ## Introduction
 
-Zwallet is an E-Wallet Application with PIN and Password security so users can transact safely. Other 
+Zwallet is an E-Wallet Application with PIN and Password security so users can have transaction safely. Other 
 features are user profile, user search, and transfer history. This application was developed with NextJs and 
 ExpressJs.
 
